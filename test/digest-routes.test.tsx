@@ -42,7 +42,7 @@ describe('digest routes', () => {
         JSON.stringify({ at: '2026-10-30T09:00:00+05:30', job: '<script>alert(1)</script>', status: 'retry', owner: 'Ada', error: '<img src=x onerror=alert(1)>' }),
         JSON.stringify({ at: '2026-10-30T09:01:00+05:30', job: '<script>alert(1)</script>', status: 'retry', owner: 'Ada' }),
         JSON.stringify({ at: '2026-10-30T09:02:00+05:30', job: '<script>alert(1)</script>', status: 'retry', owner: 'Ada' }),
-        JSON.stringify({ at: '2026-10-30T09:03:00+05:30', job: '<script>alert(1)</script>', status: 'fail', owner: 'Ada', error: '<b>latest failure</b>' }),
+        JSON.stringify({ at: '2026-10-30T09:03:00+05:30', job: '<script>alert(1)</script>', status: 'fail', owner: 'Ada', error: '<img src=x onerror=alert(1)> & <b>latest failure</b>' }),
         JSON.stringify({ at: '2026-10-30T09:04:00+05:30', job: 'beta', status: 'fail', owner: 'Grace', error: 'keep this error' }),
         JSON.stringify({ at: '2026-10-30T09:05:00+05:30', job: 'beta', status: 'ok', owner: null }),
         JSON.stringify({ at: '2026-10-30T09:06:00+05:30', job: 'alpha', status: 'ok', owner: 'Lin' }),
@@ -78,7 +78,7 @@ describe('digest routes', () => {
     expect(dangerousRow.lastStatus).toBe('fail');
     expect(dangerousRow.firstAt).toBe('2026-10-30T09:00:00+05:30');
     expect(dangerousRow.lastAt).toBe('2026-10-30T09:03:00+05:30');
-    expect(html).toContain('&lt;b&gt;latest failure&lt;/b&gt;');
+    expect(html).toContain('&lt;img src=x onerror=alert(1)&gt; &amp; &lt;b&gt;latest failure&lt;/b&gt;');
     expect(html).toContain('&lt;img src=x onerror=alert(1)&gt;');
     expect(html).not.toContain('<script>alert(1)</script>');
     expect(html).not.toContain('<img src=x onerror=alert(1)>');
